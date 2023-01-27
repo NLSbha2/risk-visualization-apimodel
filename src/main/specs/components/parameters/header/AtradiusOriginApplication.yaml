@@ -1,0 +1,7 @@
+name: Atradius-Origin-Application
+in: header
+description: e.g. BBT
+required: false
+schema:
+  type: string
+example: BBT

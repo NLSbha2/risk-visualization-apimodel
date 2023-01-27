@@ -1,0 +1,7 @@
+name: Atradius-Invocation-Service
+in: header
+description: e.g. http://atradius.com/bbt/OrganisationSearch
+required: false
+schema:
+  type: string
+  example: http://atradius.com/bbt/OrganisationSearch

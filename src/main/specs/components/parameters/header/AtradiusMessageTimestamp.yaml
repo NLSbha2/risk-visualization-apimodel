@@ -1,0 +1,7 @@
+name: Atradius-Message-Timestamp
+in: header
+description: e.g. Thu, 15 Nov 2018 08:12:31 CET
+required: false
+schema:
+  type: string
+example: Thu, 15 Nov 2018 08:12:31 CET

@@ -1,0 +1,7 @@
+name: Atradius-Concurrency-Control-Version
+in: header
+description: e.g. 2
+required: false
+schema:
+  type: string
+example: '2'

@@ -1,0 +1,7 @@
+name: Atradius-Origin-User-Id
+in: header
+description: e.g. pt.John01
+required: false
+schema:
+  type: string
+example: pt.John01

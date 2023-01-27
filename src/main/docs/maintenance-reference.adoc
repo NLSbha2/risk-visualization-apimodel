@@ -1,0 +1,7 @@
+= Risk Visualization API model
+:toc: left
+:toclevels: 2
+:includedir: maintenance
+
+== Risk Relationships
+include::{includedir}/riskrelationships-resource-diagram.adhoc[]

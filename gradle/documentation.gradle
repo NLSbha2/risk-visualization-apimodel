@@ -1,0 +1,33 @@
+def backend = 'html5'
+if (project.hasProperty('backend')) {
+    backend = project.property('backend')
+}
+
+asciidoctor {
+    sourceDir file("$projectDir/src/main/docs")
+    sources {
+        include 'maintenance-reference.adoc'
+    }
+    outputOptions {
+        backends = [backend]
+    }
+    logDocuments = true
+    baseDirFollowsSourceDir()
+    inProcess = JAVA_EXEC
+    forkOptions {
+        jvmArgs("--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED", "--add-opens", "java.base/java.io=ALL-UNNAMED")
+    }
+}
+
+asciidoctorj {
+    modules {
+        diagram.use()
+    }
+    attributes = [
+            'doctype'           : 'book',
+            'toc'               : '',
+            'idprefix'          : '',
+            'idseparator'       : '-',
+            'source-highlighter': 'coderay'
+    ]
+}

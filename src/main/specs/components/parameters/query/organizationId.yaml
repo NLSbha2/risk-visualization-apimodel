@@ -1,0 +1,5 @@
+name: organization_id
+in: query
+description: '> Maximum Field Length - 16'
+schema:
+  type: string

@@ -1,0 +1,320 @@
+openapi: 3.0.3
+info:
+  title: 'SC: Reference Data V2 API'
+  version: 1.0.0
+  description: >-
+    API providing the capability to retrieve Atradius Organizations' 
+     risk relationship data.
+
+
+    ### OpenAPI Document Version Details
+
+
+    |Version Number |Version Description |
+
+    |:---------|:---------|
+
+    |0.1|Service design for 1 services in v1 with API header change|
+
+
+    ### Request Headers
+
+
+    |Header |Sample Value |Mandatory |Description | 
+
+    |:---------|:---------|:-------|:-------|
+
+    |Content-Type|application/json|Yes|Media type of the resource.|
+
+    |Authorization |"Bearer 527TIUuRrkpjwepX24ZSng.."<br>
+    YWxhZGRpbjpvcGVuc2VzYW1l...<br> NMExhZGRpbjtyuGVuc2UzYx4.. |Yes |OAuth 2
+    Authorization.| 
+
+    |Atradius-Origin-User-Id |pt.John01 |Yes |Name of the user who is performing
+    an action in a system (Note this is normally the login ID coming from the
+    LDAP.|
+
+    |Atradius-Origin-Application |BBT |Yes |Identification of the application
+    which invoked the service.|
+
+    |Atradius-Origin-Service |AnalysisDecisions |Yes |The name of origin
+    (parent) service which is invoked.| 
+
+    |Atradius-Invocation-Service |http://atradius.com/bbt/OrganisationSearch
+    |Yes |The invocation service URL.| 
+
+    |Atradius-Message-Timestamp |Thu, 15 Nov 2018 08:12:31 CET |Yes  |The
+    timestamp when the client is invoked the origin service.| 
+
+    |Atradius-Message-Id|efeeehfn73849grre|Yes|Unique identifier of the message
+    that has been send.|
+
+    |Atradius-Correlation-Id |5c4c8sda |Yes  |Unique identifier of a transaction
+    over various applications / components.| 
+
+    |Atradius-Concurrency-Control-Version|1|No| A placeholder were we can store
+    a string with relevant information to perform in the data store the
+    verification of the optimistic concurrency control. Block to capture the
+    information which might be required as part of the Optimistic concurrency
+    control (OCC) which is a concurrency control method applied to transactional
+    systems.|
+
+
+    ### Response Headers
+
+
+    |Header |Sample Value |Mandatory
+    |Description                                       | 
+
+    |:---------|:---------|:-------|:-------|
+
+    |resultcode |2XX/4XX/5XX |No |A response that can be returned to an
+    application, <br> even to indicate that the request was successful.| 
+
+    |description |Results retrieved successfully |No |A description that
+    corresponds with the response code, even to indicate that the request was
+    successful. | 
+
+    |count |2 |No |The number of records in a response.|
+
+    |responseTimeStamp |Thu, 15 Nov 2018 08:12:33 CET |No |The timestamp when
+    the client receives the response.|
+
+
+    ### GET services with effective dates
+
+
+    |FROM DATE |TO DATE |API Orchestration Description  |
+
+    |:---------|:---------|:-------|:-------|
+
+    |Null      |Null   | All the records irrespective of the dates are fetched.|
+
+    |Date   |Null   |All the records where the <b>FROM DATE</b> from the input
+    falls between the <i>effective from</i> and <i>effective to</i> dates in the
+    table are fetched.|
+
+    |Null   |Date   |Not Supported|
+
+    |Date   |Date   |All the records where the <b>FROM DATE</b> and the <b>TO
+    DATE</b> from the input falls between the <i>effective from</i> and
+    <i>effective to</i> dates in the table are fetched.|
+servers:
+  - url: https://lsagw001.atradiusnet.com:9022/sc/org-data/risk-data-api
+paths:
+  /v1/risk-data-api/risk-relationships:
+    get:
+      responses:
+        '200':
+          description: OK
+          headers:
+            resultCode:
+              schema:
+                type: string
+            description:
+              schema:
+                type: string
+            count:
+              schema:
+                type: string
+            resultCount:
+              schema:
+                type: string
+            offset:
+              schema:
+                type: string
+            responseTimeStamp:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    $ref: '#/components/schemas/RiskRelationshipsResponse'
+      summary: Get Risk Relationships
+      operationId: Get Risk Relationships
+      description: >-
+        > This service provides a the organization risk relationships data of the organization
+        translated in the input language.
+        <!-- -->
+        > The service returns full hierarchial data of organization risks.
+
+
+        <!-- -->
+
+
+        > Language translation if available can be returned based on the
+        language code input. Default is English
+      tags:
+        - Currencies
+      parameters:
+        - name: organization_id
+          in: query
+          description: |-
+            > Represents the id for the organization to search
+
+            <!-- -->
+
+            > Field Length - 10
+          example: 8745744
+          schema:
+            type: number
+        - name: language_code
+          in: query
+          description: >-
+            > Represents the language in which the currency name should be
+            translated.
+
+
+            <!-- -->
+
+
+            > Field Length - 2
+          example: EN
+          schema:
+            type: string
+        - name: validity_flag
+          in: query
+          description: >-
+            > Represents the Flag indicating whether the currency is valid or
+            not.
+
+
+            <!-- -->
+
+
+            > Field Length - 1
+          example: 'Y'
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: >-
+            > Adding +/- at the end of the parameter will indicate the sort
+            order.
+
+
+            <!-- -->
+
+
+            > Multiple parameter sorting can be carried out by comma separating
+            the parameters. 
+
+            > Sorting on the same parameter more than once is not allowed.
+
+
+            |Sort Parameter  |Description | 
+
+            |:---------|:---------|
+
+            |currency_code+| sorts the results in ascending order of their
+            currency_code|
+
+            |currency_code-| sorts the results in descending order of their
+            currency_code|
+          example: currency_code+
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: '> Allows to set the limit for number of results in a single request.'
+          example: '2'
+          schema:
+            type: number
+        - name: offset
+          in: query
+          description: '> Sets the offset for next set.'
+          example: '0'
+          schema:
+            type: number
+        - name: suppress_count_flag
+          in: query
+          description: >-
+            > A flag to indicate whether the total count of record should be
+            calcualted or not.
+          example: 'Y'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: >-
+            e.g. "Bearer 527TIUuRrkpjwepX24ZSng.."
+            YWxhZGRpbjpvcGVuc2VzYW1l...NMExhZGRpbjtyuGVuc2UzYx4..
+          required: false
+          schema:
+            type: string
+          example: >-
+            "Bearer 527TIUuRrkpjwepX24ZSng.."
+            YWxhZGRpbjpvcGVuc2VzYW1l...NMExhZGRpbjtyuGVuc2UzYx4..
+        - name: Atradius-Origin-User-Id
+          in: header
+          description: e.g. pt.John01
+          required: false
+          schema:
+            type: string
+          example: pt.John01
+        - name: Atradius-Origin-Application
+          in: header
+          description: e.g. BBT
+          required: false
+          schema:
+            type: string
+          example: BBT
+        - name: Atradius-Origin-Service
+          in: header
+          description: e.g. AnalysisDecisions
+          required: false
+          schema:
+            type: string
+          example: AnalysisDecisions
+        - name: Atradius-Invocation-Service
+          in: header
+          description: e.g. http://atradius.com/bbt/OrganisationSearch
+          required: false
+          schema:
+            type: string
+          example: http://atradius.com/bbt/OrganisationSearch
+        - name: Atradius-Message-Timestamp
+          in: header
+          description: e.g. Thu, 15 Nov 2018 08:12:31 CET
+          required: false
+          schema:
+            type: string
+          example: Thu, 15 Nov 2018 08:12:31 CET
+        - name: Atradius-Message-Id
+          in: header
+          description: e.g. 44868hgddhj
+          required: false
+          schema:
+            type: string
+          example: 44868hgddhj
+        - name: Atradius-Correlation-Id
+          in: header
+          description: e.g. 5c4c8sda
+          required: false
+          schema:
+            type: string
+          example: 5c4c8sda
+        - name: Atradius-Concurrency-Control-Version
+          in: header
+          description: e.g. 2
+          required: false
+          schema:
+            type: string
+          example: 2
+tags:
+  - name: Risk Visualization API
+    description: '      ## Data Rules and Validations\n\n\n      All validations are against CG_REF_CODES. Currency exchange rate has one\n      rule when source and target currency are equal the exchange rate must be 1\n\n\n      Note: rules are in the proces of being implemented within the API'
+  - name: Appendix
+    description: |-
+      ##Trade sector Grouping types
+
+      |Type |Description |
+      |:----|:---------|
+      |BCAT|Business Category|
+      |ILEV|Industry Level|
+      |TGRP|Trade Sector Group|
+      |SUBS|CyC Subsector|
+      |SECT|CyC Sector|

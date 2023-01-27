@@ -1,0 +1,28 @@
+.Risk relationships
+[plantuml, riskrelationships, svg]
+----
+skinparam linetype ortho
+skinparam object<<Resource>> {
+    backgroundColor lightpink
+}
+skinparam object<<Subresource>> {
+    backgroundColor mistyrose
+}
+package "Risk Relationships" <<Rectangle>> {
+object RiskRelationships <<Resource>> {
+GET
+}
+object "/{organization_id}" as RiskRelationships_ID {
+GET
+}
+
+object "/{id}" as RiskRelationships_Result {
+GET
+POST
+PUT
+DELETE
+}
+RiskRelationships -right- RiskRelationships_ID
+RiskRelationships_ID -right- RiskRelationships_Result
+}
+----

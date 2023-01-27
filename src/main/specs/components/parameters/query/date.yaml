@@ -1,0 +1,12 @@
+name: date
+in: query
+description: >-
+  > Represents the effective date. Will use current date by default.
+  
+  <!-- -->
+  
+  > Date format: YYYY-MM-DD
+example: '2010-09-29'
+schema:
+  type: string
+  format: date

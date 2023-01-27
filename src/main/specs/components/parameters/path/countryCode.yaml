@@ -1,0 +1,12 @@
+name: country_code
+in: path
+required: true
+description: |-
+  > Represents the 3 character code for the country or the 3 character code dash sub area code (ie. ESP-A)
+  
+  <!-- -->
+  
+  > Field Length - 5
+example: NLD, ESP-A
+schema:
+  type: string

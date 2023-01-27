@@ -1,0 +1,7 @@
+name: Atradius-Correlation-Id
+in: header
+description: e.g. 5c4c8sda
+required: false
+schema:
+  type: string
+example: 5c4c8sda

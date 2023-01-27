@@ -1,0 +1,11 @@
+name: Authorization
+in: header
+description: >-
+  e.g. "Bearer 527TIUuRrkpjwepX24ZSng.."
+  YWxhZGRpbjpvcGVuc2VzYW1l...NMExhZGRpbjtyuGVuc2UzYx4..
+required: false
+schema:
+  type: string
+example: >-
+  "Bearer 527TIUuRrkpjwepX24ZSng.."
+  YWxhZGRpbjpvcGVuc2VzYW1l...NMExhZGRpbjtyuGVuc2UzYx4..

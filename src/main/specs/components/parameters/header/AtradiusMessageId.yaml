@@ -1,0 +1,7 @@
+name: Atradius-Message-Id
+in: header
+description: e.g. 44868hgddhj
+required: false
+schema:
+  type: string
+example: 44868hgddhj

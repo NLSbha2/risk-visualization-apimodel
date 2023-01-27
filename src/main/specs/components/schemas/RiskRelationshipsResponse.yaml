@@ -1,0 +1,24 @@
+type: object
+properties:
+  organization_id:
+    type: string
+    example: Germany
+    description: Maximum Field Length - 35
+  name:
+    type: string
+    example: OH
+    description: Maximum Field Length - 10
+    nullable: true
+  buyer_status:
+    type: string
+    example: OH
+    description: Maximum Field Length - 35
+    nullable: true
+  buyer_is_customer_flag:
+    type: string
+    example: OH
+    description: Maximum Field Length - 3
+  share:
+    type: string
+    example: ALABAMA
+    description: Maximum Field Length - 35

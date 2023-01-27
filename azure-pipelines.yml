@@ -1,0 +1,86 @@
+
+trigger:
+  - main
+
+variables:
+  - group: "Artifactory"
+  - group: "Semantic Versioning"
+  - name: NODE.EXTRA.CA.CERTS
+    value: /var/lib/azure-devops/Atradius-RootCA.pem
+  - name: GRADLE_USER_HOME
+    value: /var/lib/azure-devops/SC-API/.gradle
+
+jobs:
+  - job: 'Publish'
+    pool: Atradius-Self-Hosted
+    steps:
+      - task: JavaToolInstaller@0
+        displayName: "Install JDK 17"
+        inputs:
+          versionSpec: '17'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'LocalDirectory'
+          jdkFile: '/var/lib/azure-devops/java-zips/openjdk-17.0.2_linux-x64_bin.tar.gz'
+          jdkDestinationDirectory: './java-temp'
+          cleanDestinationDirectory: true
+
+      - task: CmdLine@2
+        displayName: Import Certs to Keystore
+        inputs:
+          script: |
+            keytool -import -trustcacerts -alias "AtradiusRootCA" -file /var/lib/azure-devops/Atradius-RootCA.pem -cacerts -storepass changeit -noprompt
+            keytool -import -trustcacerts -alias "lpart001" -file /var/lib/azure-devops/lpart001.crt -cacerts -storepass changeit -noprompt
+
+      - task: Gradle@3
+        displayName: Gradle Build
+        inputs:
+          gradleWrapperFile: 'gradlew'
+          tasks: 'build'
+          publishJUnitResults: true
+          testResultsFiles: '**/TEST-*.xml'
+          javaHomeOption: 'JDKVersion'
+          sonarQubeRunAnalysis: false
+          spotBugsAnalysis: false
+
+      - task: Gradle@3
+        displayName: Gradle dependencyCheckAnalyze (OWASP)
+        inputs:
+          gradleWrapperFile: 'gradlew'
+          tasks: 'dependencyCheckAnalyze'
+          publishJUnitResults: false
+          javaHomeOption: 'JDKVersion'
+          sonarQubeRunAnalysis: false
+          spotBugsAnalysis: false
+
+      - task: SonarQubePrepare@5
+        inputs:
+          SonarQube: 'SonarQube-SC OM and RD'
+          scannerMode: 'Other'
+
+      - task: Gradle@3
+        displayName: Gradle Sonar Analyze
+        inputs:
+          gradleWrapperFile: 'gradlew'
+          tasks: 'sonarqube'
+          publishJUnitResults: false
+          javaHomeOption: 'JDKVersion'
+          sonarQubeRunAnalysis: true
+          spotBugsAnalysis: false
+
+      - task: SonarQubePublish@5
+        inputs:
+          pollingTimeoutSec: '300'
+
+      - task: sonar-buildbreaker@8
+        inputs:
+          SonarQube: 'SonarQube-SC OM and RD'
+
+      - task: Gradle@3
+        displayName: Gradle Publish
+        inputs:
+          gradleWrapperFile: 'gradlew'
+          tasks: 'publish'
+          publishJUnitResults: false
+          javaHomeOption: 'JDKVersion'
+          sonarQubeRunAnalysis: false
+          spotBugsAnalysis: false

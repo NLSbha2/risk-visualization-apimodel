@@ -1,0 +1,35 @@
+get:
+  summary: Risk Relationships
+  operationId: getRiskRelationships
+  x-atradius-paged-dataclass: RiskRelationshipsResponse
+  description: '> This service returns the Risk Relationship for an organization within Atradius.'
+  tags:
+    - RiskRelationships
+  parameters:
+    - $ref: "../components/parameters/query/organizationId.yaml"
+    - $ref: "../components/parameters/header/Authorization.yaml"
+    - $ref: "../components/parameters/header/AtradiusOriginUserId.yaml"
+    - $ref: "../components/parameters/header/AtradiusOriginApplication.yaml"
+    - $ref: "../components/parameters/header/AtradiusOriginService.yaml"
+    - $ref: "../components/parameters/header/AtradiusInvocationService.yaml"
+    - $ref: "../components/parameters/header/AtradiusMessageTimestamp.yaml"
+    - $ref: "../components/parameters/header/AtradiusMessageId.yaml"
+    - $ref: "../components/parameters/header/AtradiusCorrelationId.yaml"
+    - $ref: "../components/parameters/header/AtradiusConcurrencyControlVersion.yaml"
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '../components/schemas/RiskRelationshipsResponse.yaml'
+            data:
+              - results
+            allOf:
+              - $ref: '../components/schemas/MetaDataHolder.yaml'
+
