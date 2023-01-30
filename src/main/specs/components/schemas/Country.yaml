@@ -1,0 +1,20 @@
+type: object
+properties:
+  country_id:
+    type: number
+    example: 5
+    description: Represents unique ID of the Country in the core table. Value must be of format 'int32'.
+  country_name:
+    type: string
+    example: Netherlands
+    description: Name of the country. Maximum Field Length - 35
+    nullable: true
+  three_char_iso_code:
+    type: string
+    example: NLD
+    description: Represents the 3 character code for the Country. Maximum Field Length - 3
+    nullable: true
+  two_char_iso_code:
+    type: string
+    example: NL
+    description: Represents the 2 character code for the Country. Maximum Field Length - 2

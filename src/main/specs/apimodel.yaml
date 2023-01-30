@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: 'SC: Reference Data V2 API'
+  title: 'SC: Risk Visualization V1 API'
   version: 1.0.0
   description: >-
     API providing the capability to retrieve Atradius Organizations' 
@@ -136,10 +136,10 @@ paths:
       summary: Get Risk Relationships
       operationId: Get Risk Relationships
       description: >-
-        > This service provides a the organization risk relationships data of the organization
+        > This API provides a the organization risk relationships data of the organization
         translated in the input language.
         <!-- -->
-        > The service returns full hierarchial data of organization risks.
+        > The service returns full hierarchical data of organization risks.
 
 
         <!-- -->
@@ -148,7 +148,7 @@ paths:
         > Language translation if available can be returned based on the
         language code input. Default is English
       tags:
-        - Currencies
+        - Risk Relationships
       parameters:
         - name: organization_id
           in: query
@@ -157,14 +157,21 @@ paths:
 
             <!-- -->
 
-            > Field Length - 10
+            > Field Length - 16
           example: 8745744
           schema:
             type: number
+        - name: date
+          in: query
+          description: >-
+            > Point in time of the returned data. ISO8601 format [YYYY-MM-DDTHH:mi:ssZ]
+          example: 2021-03-21T00:00:00Z
+          schema:
+            type: string
         - name: language_code
           in: query
           description: >-
-            > Represents the language in which the currency name should be
+            > Represents the language in which the data should be
             translated.
 
 
@@ -175,48 +182,13 @@ paths:
           example: EN
           schema:
             type: string
-        - name: validity_flag
+        - name: include_information_link
           in: query
           description: >-
-            > Represents the Flag indicating whether the currency is valid or
-            not.
-
-
-            <!-- -->
-
-
-            > Field Length - 1
-          example: 'Y'
+            > true if information links are to be included.
+          example: true
           schema:
-            type: string
-        - name: sort
-          in: query
-          description: >-
-            > Adding +/- at the end of the parameter will indicate the sort
-            order.
-
-
-            <!-- -->
-
-
-            > Multiple parameter sorting can be carried out by comma separating
-            the parameters. 
-
-            > Sorting on the same parameter more than once is not allowed.
-
-
-            |Sort Parameter  |Description | 
-
-            |:---------|:---------|
-
-            |currency_code+| sorts the results in ascending order of their
-            currency_code|
-
-            |currency_code-| sorts the results in descending order of their
-            currency_code|
-          example: currency_code+
-          schema:
-            type: string
+            type: boolean
         - name: limit
           in: query
           description: '> Allows to set the limit for number of results in a single request.'
@@ -233,7 +205,7 @@ paths:
           in: query
           description: >-
             > A flag to indicate whether the total count of record should be
-            calcualted or not.
+            calculated or not.
           example: 'Y'
           schema:
             type: string
@@ -306,7 +278,7 @@ paths:
           example: 2
 tags:
   - name: Risk Visualization API
-    description: '      ## Data Rules and Validations\n\n\n      All validations are against CG_REF_CODES. Currency exchange rate has one\n      rule when source and target currency are equal the exchange rate must be 1\n\n\n      Note: rules are in the proces of being implemented within the API'
+    description: '      ## Data Rules and Validations\n\n\n All validations are against ORG_ID. Note: rules are in the process of being implemented within the API'
   - name: Appendix
     description: |-
       ##Trade sector Grouping types

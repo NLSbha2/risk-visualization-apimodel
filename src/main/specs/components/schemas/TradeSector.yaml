@@ -1,0 +1,10 @@
+type: object
+properties:
+  nace_code:
+    type: string
+    example: '2743'
+    description: Maximum Field Length - 4
+  sector_name:
+    type: string
+    example: Casting of Steel
+    description: Maximum Field Length - 35

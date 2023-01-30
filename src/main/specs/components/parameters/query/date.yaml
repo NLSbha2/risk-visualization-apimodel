@@ -6,7 +6,7 @@ description: >-
   <!-- -->
   
   > Date format: YYYY-MM-DD
-example: '2010-09-29'
+example: '2023-01-29'
 schema:
   type: string
   format: date

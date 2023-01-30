@@ -7,6 +7,9 @@ get:
     - RiskRelationships
   parameters:
     - $ref: "../components/parameters/query/organizationId.yaml"
+    - $ref: "../components/parameters/query/date.yaml"
+    - $ref: "../components/parameters/query/requiredLanguageCode.yaml"
+    - $ref: "../components/parameters/query/includeInformationLinks.yaml"
     - $ref: "../components/parameters/header/Authorization.yaml"
     - $ref: "../components/parameters/header/AtradiusOriginUserId.yaml"
     - $ref: "../components/parameters/header/AtradiusOriginApplication.yaml"

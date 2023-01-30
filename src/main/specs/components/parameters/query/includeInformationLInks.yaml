@@ -1,0 +1,8 @@
+name: include_information_flag
+in: query
+description: >-
+  > A flag to indicate whether the information links are to be included or not. True if information links are to be included.
+schema:
+  type: boolean
+  default: false
+  nullable: true

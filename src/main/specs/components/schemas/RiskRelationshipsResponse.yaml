@@ -2,23 +2,29 @@ type: object
 properties:
   organization_id:
     type: string
-    example: Germany
-    description: Maximum Field Length - 35
+    example: 8745744
+    description: Organisation identifier in the core system. Value must be of format 'int32'. Maximum Field Length - 16
   name:
     type: string
     example: OH
-    description: Maximum Field Length - 10
+    description: Organisation name. Maximum Field Length - 35
     nullable: true
   buyer_status:
     type: string
-    example: OH
-    description: Maximum Field Length - 35
+    example: Trading
+    description: Buyer status e.g. Trading, Duplicate, Dormant, Insolvent. Maximum Field Length - 35
     nullable: true
   buyer_is_customer_flag:
-    type: string
-    example: OH
-    description: Maximum Field Length - 3
-  share:
-    type: string
-    example: ALABAMA
-    description: Maximum Field Length - 35
+    type: boolean
+    example: true
+    description: true when the buyer is customer
+  buyer_country:
+    $ref: 'Country.yaml'
+  trade_sector:
+    $ref: 'TradeSector.yaml'
+  children:
+    type: array
+    items:
+      $ref: 'Organization.yaml'
+
+
