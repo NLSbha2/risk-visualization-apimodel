@@ -3,17 +3,15 @@ properties:
   organization_id:
     type: string
     example: 8745744
-    description: Organisation identifier in the core system. Value must be of format 'int32'. Maximum Field Length - 16
+    description: Organisation identifier for which Risk Relationships are retrieved in the core system. Value must be of format 'int32'. Maximum Field Length - 16
   name:
     type: string
-    example: OH
+    example: MARA HOESCH
     description: Organisation name. Maximum Field Length - 35
-    nullable: true
   buyer_status:
     type: string
     example: Trading
     description: Buyer status e.g. Trading, Duplicate, Dormant, Insolvent. Maximum Field Length - 35
-    nullable: true
   buyer_is_customer_flag:
     type: boolean
     example: true

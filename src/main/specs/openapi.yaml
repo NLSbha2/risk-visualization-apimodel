@@ -1,11 +1,9 @@
 openapi: 3.0.3
 info:
-  title: 'SC: Reference Data V2 API'
+  title: 'SC: Risk Visualisation V1 API'
   version: 1.0.0
   description: >-
-    API providing the capability to Search, View and Maintain Atradius Reference
-    Data like Currencies, Languages, Sector Groupings, Juridical Reasons, Legal
-    Statuses, Industries, Trade Groups and External Sectors.
+    API providing the capability to retrieve the Risk Relationships for an organization in Atradius.
 
 
     ### Apiary Document Version Details
@@ -103,7 +101,7 @@ info:
 servers:
   - url: https://localhost:8080
 paths:
-  /v1/risk-data-api/risk-relationships/:
+  /v1/sc/org-data/risk-data-api:
       $ref: "./paths/riskRelationships.yaml"
 
 

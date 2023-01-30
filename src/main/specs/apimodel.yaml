@@ -102,7 +102,7 @@ info:
 servers:
   - url: https://lsagw001.atradiusnet.com:9022/sc/org-data/risk-data-api
 paths:
-  /v1/risk-data-api/risk-relationships:
+  /v1/sc/org-data/risk-data-api:
     get:
       responses:
         '200':

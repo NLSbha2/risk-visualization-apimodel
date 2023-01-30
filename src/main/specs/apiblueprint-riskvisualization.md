@@ -53,7 +53,7 @@ Note: rules are in the process of being implemented within the API
 
 ##  Risk Relationships [/v1/risk-data-api/risk-relationships:]
 
-### Get Risk Relationships [GET /v1/risk-data-api/risk-relationships{?organization_id,language_code,include_information_links,limit,offset,suppress_count_flag}]
+### Get Risk Relationships [GET /v1/sc/org-data/risk-data-api{?organization_id,language_code,include_information_links,limit,offset,suppress_count_flag}]
 
 > This API provides a the organization risk relationships data of the organization
 translated in the input language.
