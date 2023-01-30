@@ -74,8 +74,6 @@ info:
     corresponds with the response code, even to indicate that the request was
     successful. | 
 
-    |count |2 |No |The number of records in a response.|
-
     |responseTimeStamp |Thu, 15 Nov 2018 08:12:33 CET |No |The timestamp when
     the client receives the response.|
 

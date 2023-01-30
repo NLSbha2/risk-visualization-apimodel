@@ -75,8 +75,6 @@ info:
     corresponds with the response code, even to indicate that the request was
     successful. | 
 
-    |count |2 |No |The number of records in a response.|
-
     |responseTimeStamp |Thu, 15 Nov 2018 08:12:33 CET |No |The timestamp when
     the client receives the response.|
 
@@ -112,15 +110,6 @@ paths:
               schema:
                 type: string
             description:
-              schema:
-                type: string
-            count:
-              schema:
-                type: string
-            resultCount:
-              schema:
-                type: string
-            offset:
               schema:
                 type: string
             responseTimeStamp:
@@ -189,26 +178,6 @@ paths:
           example: true
           schema:
             type: boolean
-        - name: limit
-          in: query
-          description: '> Allows to set the limit for number of results in a single request.'
-          example: '2'
-          schema:
-            type: number
-        - name: offset
-          in: query
-          description: '> Sets the offset for next set.'
-          example: '0'
-          schema:
-            type: number
-        - name: suppress_count_flag
-          in: query
-          description: >-
-            > A flag to indicate whether the total count of record should be
-            calculated or not.
-          example: 'Y'
-          schema:
-            type: string
         - name: Authorization
           in: header
           description: >-

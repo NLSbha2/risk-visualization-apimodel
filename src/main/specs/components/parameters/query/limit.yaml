@@ -1,7 +1,0 @@
-name: limit
-in: query
-description: '> Allows to set the limit for number of results in a single request.'
-example: '2'
-schema:
-  type: integer
-  format: int64

@@ -33,7 +33,6 @@ API providing the capability to retrieve, risk relationships between organizatio
 |:---------|:---------|:-------|:-------|
 |resultcode |2XX/4XX/5XX |No |A response that can be returned to an application, <br> even to indicate that the request was successful.| 
 |description |Results retrieved successfully |No |A description that corresponds with the response code, even to indicate that the request was successful. | 
-|count |2 |No |The number of records in a response.|
 |responseTimeStamp |Thu, 15 Nov 2018 08:12:33 CET |No |The timestamp when the client receives the response.| 
 
 ### GET services with effective dates
@@ -53,9 +52,9 @@ Note: rules are in the process of being implemented within the API
 
 ##  Risk Relationships [/v1/risk-data-api/risk-relationships:]
 
-### Get Risk Relationships [GET /v1/sc/org-data/risk-data-api{?organization_id,language_code,include_information_links,limit,offset,suppress_count_flag}]
+### Get Risk Relationships [GET /v1/sc/org-data/risk-data-api{?organization_id,language_code,include_information_links}]
 
-> This API provides a the organization risk relationships data of the organization
+> This API provides the organization risk relationships data of the organization
 translated in the input language.
 
  <!-- -->
@@ -75,31 +74,22 @@ translated in the input language.
 
     + date: 2023-01-29T00:00:00Z (optional, string )
 
-    > Point in time of the returned data. ISO8601 format [YYYY-MM-DDTHH:mi:ssZ]
+         > Point in time of the returned data. ISO8601 format [YYYY-MM-DDTHH:mi:ssZ]
 
-           <!-- -->
-    > Field Length - 16
+         <!-- -->
+      > Field Length - 16
+
     + language_code: EN (optional, string )
         
         >   Represents the language in which the currency name should be translated.
-        
-               <!-- -->
-        >   Field Length - 2
-          + include_information_links: true (optional, boolean)
+
+         <!-- -->
+      > Field Length - 2
+
+    + include_information_links: true (optional, boolean)
 
          >   true if information links are to be included.
-    
-      + limit: 2 (optional, number)
       
-       >         Allows to set the limit for number of results in a single request.
-       
-      + offset: 0 (optional , number)
-     
-        >           Sets the offset for next set.
-
-      + suppress_count_flag : Y (enum[Y, N] , optional)
-     
-        >             A flag to indicate whether the total count of record should be calculated or not.     
 
 + Request (application/json)
 
@@ -121,9 +111,6 @@ translated in the input language.
 
             resultCode: 2XX/4XX/5XX
             description: Results retrieved successfully
-            count: 2
-            resultCount: 2
-            offset: 0
             responseTimeStamp: Thu, 15 Nov 2018 08:12:33 CET
 
     + Attributes
