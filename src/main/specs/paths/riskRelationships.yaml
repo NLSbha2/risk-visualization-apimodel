@@ -27,12 +27,7 @@ get:
           schema:
             type: object
             properties:
-              data:
-                type: array
-                items:
-                  $ref: '../components/schemas/RiskRelationshipsResponse.yaml'
-            data:
-              - results
-            allOf:
-              - $ref: '../components/schemas/MetaDataHolder.yaml'
+              response:
+                $ref: '../components/schemas/RiskRelationshipsResponse.yaml'
+
 

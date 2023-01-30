@@ -95,8 +95,8 @@ openApiGenerate {
     generatorName.set("atradius-spring")
     inputSpec.set("$rootDir/src/main/specs/openapi.yaml")
     outputDir.set("$buildDir/generatedSources")
-    apiPackage.set("com.atradius.corporate-reference-data.api")
-    modelPackage.set("com.atradius.corporate-reference-data.api.model")
+    apiPackage.set("com.atradius.risk-visualization-data.api")
+    modelPackage.set("com.atradius.risk-visualization-data.api.model")
     configOptions.set(mapOf(
         "dateLibrary" to "java8-localdatetime",
         "implicitHeaders" to "true",
@@ -114,8 +114,8 @@ tasks.register("apiaryGenerate", GenerateTask::class) {
     generatorName.set("atradius-spring")
     inputSpec.set("$rootDir/src/main/specs/apimodel-country.yaml")
     outputDir.set("$buildDir/generatedSources")
-    apiPackage.set("com.atradius.apiary.corporate-reference-data.api")
-    modelPackage.set("com.atradius.apiary.corporate-reference-data.api.model")
+    apiPackage.set("com.atradius.apiary.risk-visualization-data.api")
+    modelPackage.set("com.atradius.apiary.risk-visualization-data.api.model")
     configOptions.set(mapOf(
         "dateLibrary" to "java8-localdatetime",
         "implicitHeaders" to "true",
