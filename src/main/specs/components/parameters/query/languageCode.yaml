@@ -1,6 +1,5 @@
 name: language_code
 in: query
-required: true
 description: '> Maximum Field Length - 2'
 example: FR
 schema:

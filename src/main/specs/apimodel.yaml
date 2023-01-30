@@ -141,6 +141,7 @@ paths:
       parameters:
         - name: organization_id
           in: query
+          required: true
           description: |-
             > Represents the id for the organization to search
 
@@ -152,6 +153,7 @@ paths:
             type: number
         - name: date
           in: query
+          required: false
           description: >-
             > Point in time of the returned data. ISO8601 format [YYYY-MM-DDTHH:mi:ssZ]
           example: 2021-03-21T00:00:00Z
@@ -159,6 +161,7 @@ paths:
             type: string
         - name: language_code
           in: query
+          required: false
           description: >-
             > Represents the language in which the data should be
             translated.
@@ -171,11 +174,13 @@ paths:
           example: EN
           schema:
             type: string
+            default : EN
         - name: include_information_link
           in: query
           description: >-
             > true if information links are to be included.
           example: true
+          required: true
           schema:
             type: boolean
         - name: Authorization
@@ -247,7 +252,7 @@ paths:
           example: 2
 tags:
   - name: Risk Visualization API
-    description: '      ## Data Rules and Validations\n\n\n All validations are against ORG_ID. Note: rules are in the process of being implemented within the API'
+    description: '      ## Data Rules and Validations\n\n\n All validations are against symphony ID for organizations. Note: rules are in the process of being implemented within the API'
   - name: Appendix
     description: |-
       ##Trade sector Grouping types

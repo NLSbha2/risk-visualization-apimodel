@@ -1,5 +1,6 @@
 name: organization_id
 in: query
+required: true
 description: '> Maximum Field Length - 16'
 schema:
   type: string

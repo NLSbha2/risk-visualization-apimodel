@@ -1,5 +1,6 @@
 name: date
 in: query
+required: false
 description: >-
   > Represents the effective date. Will use current date by default.
   

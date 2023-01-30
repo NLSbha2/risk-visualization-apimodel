@@ -1,14 +1,13 @@
 get:
   summary: Risk Relationships
   operationId: getRiskRelationships
-  x-atradius-paged-dataclass: RiskRelationshipsResponse
   description: '> This service returns the Risk Relationship for an organization within Atradius.'
   tags:
     - RiskRelationships
   parameters:
     - $ref: "../components/parameters/query/organizationId.yaml"
     - $ref: "../components/parameters/query/date.yaml"
-    - $ref: "../components/parameters/query/requiredLanguageCode.yaml"
+    - $ref: "../components/parameters/query/languageCode.yaml"
     - $ref: "../components/parameters/query/includeInformationLinks.yaml"
     - $ref: "../components/parameters/header/Authorization.yaml"
     - $ref: "../components/parameters/header/AtradiusOriginUserId.yaml"
