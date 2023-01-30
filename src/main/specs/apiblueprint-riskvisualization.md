@@ -50,7 +50,7 @@ All validations are against valid ORG_IDs.
 
 Note: rules are in the process of being implemented within the API
 
-##  Risk Relationships [/v1/risk-data-api/risk-relationships:]
+##  Risk Relationships [/v1/sc/org-data/risk-data-api]
 
 ### Get Risk Relationships [GET /v1/sc/org-data/risk-data-api{?organization_id,language_code,include_information_links}]
 
